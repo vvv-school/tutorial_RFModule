@@ -1,0 +1,19 @@
+<application>
+
+  <name>Tutorial_RFModule</name>
+  <description> Tutorial on yarp RFModule</description>
+
+  <dependencies>
+      <port>/yarplogger</port>
+  </dependencies>
+
+  <module>
+      <name>tutorial_RFModule</name>
+      <parameter> </parameter>
+      <prefix> </prefix>
+      <environment>YARP_FORWARD_LOG_ENABLE=1</environment>
+      <node>localhost</node>
+  </module>
+
+</application>
+
