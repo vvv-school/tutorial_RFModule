@@ -24,3 +24,33 @@ It has an input port to receive text messages, an output port to steam out the e
 
 ![module](/misc/tutotial_RFModule.png)
 
+# Build and Install the code
+Follow these steps to build and properly install your module: 
+```
+$ cd tutotial_RFModule
+$ mkdir build; cd build
+$ cmake ../
+$ make
+$ make install
+```
+the `make install` will install your module (binary, xml files, etc) in the icub contrib folder which is already setup on your machine. 
+
+# Running the tutorial application
+- Simply run the `yarpmanager` and open/run the `Tutorial_RFModule` application for the GUI then connect the ports: 
+```
+$ yarpmanager
+```
+
+# Testing the tutorial application
+- In a terminal run `yarp read` 
+```
+$ yarp read ... /decoder/Codec/out
+```
+- In another terminal run `yarp write` and type something 
+```
+$ yarp write ... /coder/Codec/in
+>> Hello Tutorial
+```
+You should be able to see the `Hello Tutorial` message in the `yarp read` terminal. 
+
+
