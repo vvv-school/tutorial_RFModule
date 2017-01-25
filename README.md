@@ -53,4 +53,10 @@ $ yarp write ... /coder/Codec/in
 ```
 You should be able to see the `Hello Tutorial` message in the `yarp read` terminal. 
 
+# Scenario 
+As it is shown in the following diagram, there are two instances of the `tutotial_RFModule` is running. 
+- First `tutotial_RFModule` lunched with `--mode coder` to encode the input string 
+- Second `tutotial_RFModule` lunched with `--mode decoder`; it receives the input encoded message, decode it and send it out to the `yarp read` 
+
+![application](/misc/application.png)
 
