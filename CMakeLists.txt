@@ -21,14 +21,18 @@ include(ICUBcontribOptions)
 icubcontrib_set_default_prefix()
 
 # import math symbols from standard cmath
-#add_definitions(-D_USE_MATH_DEFINES)
-
+#add_definitions(-D_MY_DEFINITION)
 
 
 
 # building module
-include_directories(${YARP_INCLUDE_DIRS})
-add_executable(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/main.cpp)
+include_directories(${YARP_INCLUDE_DIRS}
+                    ${CMAKE_SOURCE_DIR}/src)
+
+add_executable(${PROJECT_NAME} 
+               ${CMAKE_SOURCE_DIR}/src/Codec.cpp
+               ${CMAKE_SOURCE_DIR}/src/main.cpp)
+
 target_link_libraries(${PROJECT_NAME} ${YARP_LIBRARIES})
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
