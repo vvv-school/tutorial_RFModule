@@ -53,6 +53,14 @@ $ yarp write ... /coder/Codec/in
 ```
 You should be able to see the `Hello Tutorial` message in the `yarp read` terminal. 
 
+- In a terminal run `yarp rpc` and type `quit`
+```
+$ yarp rpc /coder/Codec/rpc
+>> quit
+```
+this will stop the the `tutotial_RFModule` which was responsible for encoding our message. Check this by pressing the **Refresh** button of the `yarpmanager` GUI. 
+
+
 # Scenario 
 As it is shown in the following diagram, there are two instances of the `tutotial_RFModule` is running. 
 - First `tutotial_RFModule` lunched with `--mode coder` to encode the input string 
