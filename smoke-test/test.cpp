@@ -6,8 +6,10 @@
 
 #include <string>
 
-#include <rtf/yarp/YarpTestCase.h>
+#include <yarp/rtf/TestCase.h>
 #include <rtf/dll/Plugin.h>
+#include <rtf/TestAssert.h>
+
 
 #include <yarp/os/all.h>
 #include <yarp/dev/all.h>
@@ -45,7 +47,7 @@ public:
 };
 
 /**********************************************************************/
-class TestTutorialRFModule : public YarpTestCase
+class TestTutorialRFModule : public yarp::rtf::TestCase
 {
 private:
         BufferedPort<Bottle> portOut;
@@ -53,7 +55,7 @@ private:
 public:
     /******************************************************************/
     TestTutorialRFModule() :
-        YarpTestCase("TestTutorialRFModule") { }
+        yarp::rtf::TestCase("TestTutorialRFModule") { }
     
     /******************************************************************/
     virtual ~TestTutorialRFModule() {
