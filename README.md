@@ -6,11 +6,10 @@ After doing this tutorial you will be expected to know how to write a proper YAR
 
 
 will guide you to the use 
-- [yarp::os::RFModule] (http://www.yarp.it/classyarp_1_1os_1_1RFModule.html)
-- [yarp::os::ResourceFinder] (http://www.yarp.it/classyarp_1_1os_1_1ResourceFinder.html)
-- [module for yarpmanager] (http://www.yarp.it/yarpmanager.html)
+- [yarp::os::RFModule](http://www.yarp.it/classyarp_1_1os_1_1RFModule.html)
+- [yarp::os::ResourceFinder](http://www.yarp.it/classyarp_1_1os_1_1ResourceFinder.html)
+- [module for yarpmanager](http://www.yarp.it/yarpmanager.html)
 - Better Cmake file 
-
 
 
 # Tutorial
