@@ -21,12 +21,12 @@ $ tutorial_RFModule --mode decoder
 
 It has an input port to receive text messages, an output port to steam out the encoded/decoded messages and an rpc port for the remote and runtime configuration: 
 
-![module](/misc/tutotial_RFModule.png)
+![module](/misc/tutorial_RFModule.png)
 
 # Build and Install the code
 Follow these steps to build and properly install your module: 
 ```
-$ cd tutotial_RFModule
+$ cd tutorial_RFModule
 $ mkdir build; cd build
 $ cmake ../
 $ make
@@ -57,13 +57,13 @@ You should be able to see the `Hello Tutorial` message in the `yarp read` termin
 $ yarp rpc /coder/Codec/rpc
 >> quit
 ```
-this will stop the the `tutotial_RFModule` which was responsible for encoding our message. Check this by pressing the **Refresh** button of the `yarpmanager` GUI. 
+this will stop the the `tutorial_RFModule` which was responsible for encoding our message. Check this by pressing the **Refresh** button of the `yarpmanager` GUI. 
 
 
 # Scenario 
-As it is shown in the following diagram, there are two instances of the `tutotial_RFModule` is running. 
-- First `tutotial_RFModule` lunched with `--mode coder` to encode the input string 
-- Second `tutotial_RFModule` lunched with `--mode decoder`; it receives the input encoded message, decode it and send it out to the `yarp read` 
+As it is shown in the following diagram, there are two instances of the `tutorial_RFModule` is running. 
+- First `tutorial_RFModule` lunched with `--mode coder` to encode the input string 
+- Second `tutorial_RFModule` lunched with `--mode decoder`; it receives the input encoded message, decode it and send it out to the `yarp read` 
 
 ![application](/misc/application.png)
 
