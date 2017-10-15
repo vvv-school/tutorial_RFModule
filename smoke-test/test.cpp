@@ -64,14 +64,14 @@ public:
     /******************************************************************/
     virtual bool setup(yarp::os::Property& property) {       
 
-        RTF_ASSERT_ERROR_IF(portOut.open("/TestTutorialRFModule/o"), "Cannot open the output port");
-        RTF_ASSERT_ERROR_IF(portIn.open("/TestTutorialRFModule/i"), "Cannot open the output port");
+        RTF_ASSERT_ERROR_IF_FALSE(portOut.open("/TestTutorialRFModule/o"), "Cannot open the output port");
+        RTF_ASSERT_ERROR_IF_FALSE(portIn.open("/TestTutorialRFModule/i"), "Cannot open the output port");
 
-        RTF_ASSERT_ERROR_IF(NetworkBase::connect("/decoder/Codec/out", portIn.getName()),
-                            "Cannot connect to /decoder/Codec/out");
+        RTF_ASSERT_ERROR_IF_FALSE(NetworkBase::connect("/decoder/Codec/out", portIn.getName()),
+                                  "Cannot connect to /decoder/Codec/out");
 
-        RTF_ASSERT_ERROR_IF(NetworkBase::connect(portOut.getName(), "/coder/Codec/in"),
-                            "Cannot connect to /coder/Codec/in");
+        RTF_ASSERT_ERROR_IF_FALSE(NetworkBase::connect(portOut.getName(), "/coder/Codec/in"),
+                                  "Cannot connect to /coder/Codec/in");
         portIn.useCallback();
         return true;
     }
