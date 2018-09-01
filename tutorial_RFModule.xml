@@ -1,8 +1,8 @@
 <module>
     <name>tutorial_RFModule</name>
 
-    <doxygen-group>tutotials VVV</doxygen-group>
-    <description>tutotial RFModule</description>
+    <doxygen-group>tutorials VVV</doxygen-group>
+    <description>tutorial RFModule</description>
     <copypolicy>Released under the terms of the GNU GPL v2.0</copypolicy>
     <version>1.0</version>
 
