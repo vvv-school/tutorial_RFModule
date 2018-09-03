@@ -11,16 +11,14 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/plugins)
 set(CMAKE_SHARED_MODULE_PREFIX "")
 
 # add the required cmake packages
-find_package(RTF)
-find_package(RTF 1.3 COMPONENTS DLL)
-find_package(YARP REQUIRED)
+find_package(RTF 1.3  REQUIRED
+                      COMPONENTS DLL)
+find_package(YARP 3.0 REQUIRED
+                      COMPONENTS OS conf sig math dev rtf)
 
-list(APPEND CMAKE_MODULE_PATH ${YARP_MODULE_PATH})
 
 # add include directories
-include_directories(${CMAKE_SOURCE_DIR}
-                    ${RTF_INCLUDE_DIRS}
-                    ${YARP_INCLUDE_DIRS})
+include_directories(${CMAKE_SOURCE_DIR})
 
 # import math symbols from standard cmath
 #add_definitions(-D_USE_MATH_DEFINES)
