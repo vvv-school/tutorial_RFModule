@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+
+build*
+result.txt
+~*
+*.txt.user
