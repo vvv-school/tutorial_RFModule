@@ -18,11 +18,6 @@ include(ICUBcontribOptions)
 # specify to install in $ICUBcontrib_DIR/bin
 icubcontrib_set_default_prefix()
 
-# import math symbols from standard cmath
-#add_definitions(-D_MY_DEFINITION)
-
-
-
 # building module
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
@@ -33,7 +28,6 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} ${YARP_LIBRARIES})
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-
 # generate ad-hoc project to perform "make uninstall"
 icubcontrib_add_uninstall_target()
 
@@ -42,5 +36,3 @@ yarp_install(FILES ${scripts} DESTINATION ${ICUBCONTRIB_APPLICATIONS_INSTALL_DIR
 
 #file(GLOB scripts ${CMAKE_SOURCE_DIR}/app/scripts/*.xml)
 yarp_install(FILES tutorial_RFModule.xml DESTINATION ${ICUBCONTRIB_MODULES_INSTALL_DIR})
-
-
