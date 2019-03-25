@@ -6,9 +6,9 @@
 
 #include <string>
 
-#include <yarp/rtf/TestCase.h>
-#include <rtf/dll/Plugin.h>
-#include <rtf/TestAssert.h>
+#include <yarp/robottestingframework/TestCase.h>
+#include <robottestingframework/dll/Plugin.h>
+#include <robottestingframework/TestAssert.h>
 
 
 #include <yarp/os/all.h>
@@ -17,7 +17,7 @@
 #include <yarp/math/Math.h>
 
 using namespace std;
-using namespace RTF;
+using namespace robottestingframework;
 using namespace yarp::os;
 using namespace yarp::dev;
 using namespace yarp::sig;
@@ -47,7 +47,7 @@ public:
 };
 
 /**********************************************************************/
-class TestTutorialRFModule : public yarp::rtf::TestCase
+class TestTutorialRFModule : public yarp::robottestingframework::TestCase
 {
 private:
         BufferedPort<Bottle> portOut;
@@ -55,7 +55,7 @@ private:
 public:
     /******************************************************************/
     TestTutorialRFModule() :
-        yarp::rtf::TestCase("TestTutorialRFModule") { }
+        yarp::robottestingframework::TestCase("TestTutorialRFModule") { }
     
     /******************************************************************/
     virtual ~TestTutorialRFModule() {
@@ -64,13 +64,13 @@ public:
     /******************************************************************/
     virtual bool setup(yarp::os::Property& property) {       
 
-        RTF_ASSERT_ERROR_IF_FALSE(portOut.open("/TestTutorialRFModule/o"), "Cannot open the output port");
-        RTF_ASSERT_ERROR_IF_FALSE(portIn.open("/TestTutorialRFModule/i"), "Cannot open the output port");
+        ROBOTTESTINGFRAMEWORK_ASSERT_ERROR_IF_FALSE(portOut.open("/TestTutorialRFModule/o"), "Cannot open the output port");
+        ROBOTTESTINGFRAMEWORK_ASSERT_ERROR_IF_FALSE(portIn.open("/TestTutorialRFModule/i"), "Cannot open the output port");
 
-        RTF_ASSERT_ERROR_IF_FALSE(NetworkBase::connect("/decoder/Codec/out", portIn.getName()),
+        ROBOTTESTINGFRAMEWORK_ASSERT_ERROR_IF_FALSE(NetworkBase::connect("/decoder/Codec/out", portIn.getName()),
                                   "Cannot connect to /decoder/Codec/out");
 
-        RTF_ASSERT_ERROR_IF_FALSE(NetworkBase::connect(portOut.getName(), "/coder/Codec/in"),
+        ROBOTTESTINGFRAMEWORK_ASSERT_ERROR_IF_FALSE(NetworkBase::connect(portOut.getName(), "/coder/Codec/in"),
                                   "Cannot connect to /coder/Codec/in");
         portIn.useCallback();
         return true;
@@ -78,7 +78,7 @@ public:
     
     /******************************************************************/
     virtual void tearDown() {
-        RTF_TEST_REPORT("Tearing down TestTutorialRFModule");
+        ROBOTTESTINGFRAMEWORK_TEST_REPORT("Tearing down TestTutorialRFModule");
         NetworkBase::disconnect("/decoder/Codec/in", portIn.getName());
         NetworkBase::disconnect(portOut.getName(), "/coder/Codec/out");
         portIn.interrupt();
@@ -89,14 +89,14 @@ public:
     /******************************************************************/
     virtual void run()
     {   
-        RTF_TEST_REPORT(Asserter::format("Writing test message %s", TEST_MESSAGE));
+        ROBOTTESTINGFRAMEWORK_TEST_REPORT(Asserter::format("Writing test message %s", TEST_MESSAGE));
         Bottle& msg = portOut.prepare();
         msg.clear();
         msg.addString(TEST_MESSAGE);
         portOut.write(true);
-        RTF_TEST_REPORT("Reading decoded test message");
+        ROBOTTESTINGFRAMEWORK_TEST_REPORT("Reading decoded test message");
         string str = portIn.getMessage();
-        RTF_TEST_CHECK(str == string(TEST_MESSAGE),
+        ROBOTTESTINGFRAMEWORK_TEST_CHECK(str == string(TEST_MESSAGE),
                        Asserter::format("encoded/decoded message (%s == %s)", str.c_str(), TEST_MESSAGE) );
     }
 
@@ -106,4 +106,4 @@ public:
     }
 };
 
-PREPARE_PLUGIN(TestTutorialRFModule)
+ROBOTTESTINGFRAMEWORK_PREPARE_PLUGIN(TestTutorialRFModule)

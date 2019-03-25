@@ -11,10 +11,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/plugins)
 set(CMAKE_SHARED_MODULE_PREFIX "")
 
 # add the required cmake packages
-find_package(RTF 1.3  REQUIRED
+find_package(RobotTestingFramework 1.6.51  REQUIRED
                       COMPONENTS DLL)
-find_package(YARP 3.0 REQUIRED
-                      COMPONENTS OS conf sig math dev rtf)
+find_package(YARP 3.1.101 REQUIRED
+                      COMPONENTS OS conf sig math dev robottestingframework)
 
 # add include directories
 include_directories(${CMAKE_SOURCE_DIR})
@@ -26,4 +26,4 @@ add_library(${PROJECT_NAME} MODULE test.cpp)
 target_compile_definitions(${PROJECT_NAME} PRIVATE _USE_MATH_DEFINES)
 
 # add required libraries
-target_link_libraries(${PROJECT_NAME} ${RTF_LIBRARIES} ${YARP_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${RobotTestingFramework_LIBRARIES} ${YARP_LIBRARIES})
