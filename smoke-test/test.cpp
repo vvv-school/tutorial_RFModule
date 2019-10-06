@@ -4,12 +4,14 @@
  * CopyPolicy: Released under the terms of the GNU GPL v3.0.
 */
 
+#include <mutex>
+#include <condition_variable>
+#include <chrono>
 #include <string>
 
 #include <yarp/robottestingframework/TestCase.h>
 #include <robottestingframework/dll/Plugin.h>
 #include <robottestingframework/TestAssert.h>
-
 
 #include <yarp/os/all.h>
 #include <yarp/dev/all.h>
@@ -27,21 +29,23 @@ using namespace yarp::math;
 
 class BottleReader : public BufferedPort<Bottle> {
     std::string msg;
-    Semaphore sem;
+    mutex mtx_semaphore;
+    condition_variable cv_semaphore;
 
 public:
-    BottleReader(): msg("timeout"), sem(0) { }
+    BottleReader(): msg("timeout") { }
 
   virtual void onRead(Bottle &bt) {
         if(bt.size() && bt.get(0).isString())
             msg = bt.get(0).asString();
         else
             msg = "wrong data";
-        sem.post();
+        cv_semaphore.notify_all();
     }
 
     const std::string getMessage() {
-        sem.waitWithTimeout(5.0);
+        unique_lock<mutex> lck(mtx_semaphore);
+        cv_semaphore.wait_for(lck, chrono::seconds(5));
         return msg;
     }
 };
